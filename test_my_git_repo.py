@@ -13,7 +13,9 @@ import zipfile
 import urllib.request
 import os
 
+print('Start fetch...')
 df = fetch_ml_ratings()
+print('End fetch.')
 
 movies_df = pd.read_csv(
     'ml-20m/movies.csv', names=['i_id', 'title', 'genres'], sep=',', encoding='latin-1')
@@ -23,6 +25,7 @@ movies_df['i_id'] = movies_df['i_id'].apply(pd.to_numeric)
 # Create one merged DataFrame containing all the movielens data.
 
 model = df.copy()
+print('df coped to model.')
 
 
 train = model.sample(frac=0.8)
@@ -40,11 +43,13 @@ def sample_params():
     return lr, reg, factors
 
 
+print('Start SVD...')
 # lr, reg, factors = (0.007, 0.03, 90)
 lr, reg, factors = (0.02, 0.016, 64)
 svd = SVD(learning_rate=lr, regularization=reg, n_epochs=200, n_factors=factors,
           min_rating=0.5, max_rating=5)
 
+print('Start SVD fit...')
 svd.fit(X=train, X_val=val, early_stopping=True, shuffle=False)
 
 pred = svd.predict(test)
