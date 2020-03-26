@@ -92,16 +92,15 @@ class SVD():
             pu, qi, bu, bi = _run_epoch(X, pu, qi, bu, bi, self.global_mean,
                                         self.n_factors, self.lr, self.reg)
 
-            
             if X_val is not None:
                 val_metrics = _compute_val_metrics(X_val, pu, qi, bu, bi,
-                                                       self.global_mean,
-                                                       self.n_factors)
-                
+                                                   self.global_mean,
+                                                   self.n_factors)
+
                 val_loss, val_rmse, val_mae = val_metrics
                 self._on_epoch_end(start, val_loss, val_rmse, val_mae)
                 if self.early_stopping:
-                    
+
                     list_val_rmse.append(val_rmse)
 
                     if self._early_stopping(list_val_rmse):
@@ -143,7 +142,7 @@ class SVD():
 
         return self
 
-    def predict_pair(self, u_id, i_id, clip=False):#clip=True):
+    def predict_pair(self, u_id, i_id, clip=False):  # clip=True):
         """Returns the model rating prediction for a given user/item pair.
         Args:
             u_id (int): a user id.
@@ -166,7 +165,7 @@ class SVD():
             i_ix = self.item_dict[i_id]
             pred += self.bi[i_ix]
 
-        if  user_known and item_known:
+        if user_known and item_known:
             pred += np.dot(self.pu[u_ix], self.qi[i_ix])
 
         if clip:

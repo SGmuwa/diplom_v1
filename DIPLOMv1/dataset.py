@@ -13,11 +13,12 @@ __all__ = [
 ]
 
 VARIANTS = {
-    '100k': {'filename': 'u.data', 'sep':'\t'},
-    '1m': {'filename': 'ratings.dat', 'sep':r'::'},
-    '10m': {'filename': 'ratings.dat', 'sep':r'::'},
-    '20m': {'filename': 'ratings.csv', 'sep':','}
+    '100k': {'filename': 'u.data', 'sep': '\t'},
+    '1m': {'filename': 'ratings.dat', 'sep': r'::'},
+    '10m': {'filename': 'ratings.dat', 'sep': r'::'},
+    '20m': {'filename': 'ratings.csv', 'sep': ','}
 }
+
 
 def get_data_dir_path(data_dir_path=None):
     """Returns the path of the funk-svd data directory.
