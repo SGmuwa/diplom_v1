@@ -10,16 +10,19 @@ import pandas as pd
 import numpy as np
 import zipfile
 import urllib.request
+import os
 
+if not os.path.exists('ml-20'):
+    print("Downloading 20-m movielens data...")
 
-print("Downloading 20-m movielens data...")
+    urllib.request.urlretrieve(
+        "http://files.grouplens.org/datasets/movielens/ml-20m.zip", "movielens20m.zip")
 
-urllib.request.urlretrieve(
-    "http://files.grouplens.org/datasets/movielens/ml-20m.zip", "movielens20m.zip")
-
-zip_ref = zipfile.ZipFile('movielens20m.zip', "r")
-zip_ref.extractall()
-print("Downloaded the 20-m movielens!")
+    zip_ref = zipfile.ZipFile('movielens20m.zip', "r")
+    zip_ref.extractall()
+    print("Downloaded the 20-m movielens!")
+else:
+    print("using cache ml-20m...")
 
 movies_df = pd.read_csv(
     'ml-20m/movies.csv', names=['i_id', 'title', 'genres'], sep=',', encoding='latin-1')
