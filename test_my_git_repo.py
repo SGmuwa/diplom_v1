@@ -13,7 +13,7 @@ import zipfile
 import urllib.request
 import os
 
-df = fetch_ml_ratings("./")
+df = fetch_ml_ratings()
 
 movies_df = pd.read_csv(
     'ml-20m/movies.csv', names=['i_id', 'title', 'genres'], sep=',', encoding='latin-1')

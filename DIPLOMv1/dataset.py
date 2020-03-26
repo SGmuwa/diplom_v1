@@ -51,7 +51,7 @@ def ml_ratings_csv_to_df(csv_path, variant):
 
 def fetch_ml_ratings(data_dir_path=None, variant='20m'):
     if data_dir_path is None:
-        data_dir_path = get_data_dir_path(data_dir_path)
+        data_dir_path = get_data_dir_path('./')
         dirname = 'ml-' + variant
         filename = VARIANTS[variant]['filename']
         csv_path = os.path.join(data_dir_path, dirname, filename)
