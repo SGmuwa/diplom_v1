@@ -12,17 +12,7 @@ import zipfile
 import urllib.request
 import os
 
-if not os.path.exists('ml-20'):
-    print("Downloading 20-m movielens data...")
-
-    urllib.request.urlretrieve(
-        "http://files.grouplens.org/datasets/movielens/ml-20m.zip", "movielens20m.zip")
-
-    zip_ref = zipfile.ZipFile('movielens20m.zip', "r")
-    zip_ref.extractall()
-    print("Downloaded the 20-m movielens!")
-else:
-    print("using cache ml-20m...")
+df = fetch_ml_ratings()
 
 movies_df = pd.read_csv(
     'ml-20m/movies.csv', names=['i_id', 'title', 'genres'], sep=',', encoding='latin-1')
@@ -31,7 +21,6 @@ movies_df['i_id'] = movies_df['i_id'].apply(pd.to_numeric)
 
 # Create one merged DataFrame containing all the movielens data.
 
-df = fetch_ml_ratings()
 model = df.copy()
 
 
@@ -159,7 +148,7 @@ def funk_svd_predict(userID, data_with_user, movies_df):
     return recommendations, rated_df
 
 def printTable(table):
-    print('\n'.join(table))
+    display('\n'.join(table))
 
 m = list(movies_df[movies_df["genres"] == "Horror"].i_id)
 o = df[df["i_id"] == 62203].sort_values(by='rating', ascending=False)

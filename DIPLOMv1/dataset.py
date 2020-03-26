@@ -100,7 +100,7 @@ def fetch_ml_ratings(data_dir_path=None, variant='20m'):
             os.rename(os.path.join(data_dir_path, 'ml-10M100K'),
                       os.path.join(data_dir_path, dirname))
 
-        os.remove(zip_path)
+        # for using cache: os.remove(zip_path)
 
         return fetch_ml_ratings(variant=variant)
 
