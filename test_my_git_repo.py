@@ -154,7 +154,7 @@ def funk_svd_predict(userID, data_with_user, movies_df):
     return recommendations, rated_df
 
 def printTable(table):
-    print(tabulate(table, headers='firstrow'))
+    print(tabulate(table))
 
 m = list(movies_df[movies_df["genres"] == "Horror"].i_id)
 o = df[df["i_id"] == 62203].sort_values(by='rating', ascending=False)
