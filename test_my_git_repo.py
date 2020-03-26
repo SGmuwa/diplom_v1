@@ -158,7 +158,7 @@ def funk_svd_predict(userID, data_with_user, movies_df):
 
 m = list(movies_df[movies_df["genres"] == "Horror"].i_id)
 o = df[df["i_id"] == 62203].sort_values(by='rating', ascending=False)
-o.iloc[0:30, :]
+print(o.iloc[0:30, :])
 
 temp = df.groupby(['rating']).count()
 temp
@@ -166,13 +166,13 @@ temp
 
 temp = df.groupby(['u_id']).count()
 temp = temp[temp["i_id"] == temp["i_id"].min()]
-temp.iloc[90:120, :]
+print(temp.iloc[90:120, :])
 
 recommendations, rated_df = funk_svd_predict(	0	, data_with_user, movies_df)
 
-rated_df.iloc[0:20, :]
+print(rated_df.iloc[0:20, :])
 
-recommendations.head(30)
+print(recommendations.head(30))
 
 recommendations, rated_df = funk_svd_predict(	0	, data_with_user, movies_df)
-recommendations.head(30)
+print(recommendations.head(30))
