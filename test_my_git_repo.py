@@ -1,6 +1,3 @@
-!pip install git+https://github.com/pupysheva/diplom_v1
-
-
 from DIPLOMv1.dataset import fetch_ml_ratings
 from DIPLOMv1 import SVD
 
