@@ -64,9 +64,12 @@ def fetch_ml_ratings(data_dir_path=None, variant='20m'):
     if os.path.exists(csv_path):
         # Return data loaded into a DataFrame
         if not os.path.exists(csv_path + '.pkl'):
+            print('read csv...')
             df = ml_ratings_csv_to_df(csv_path, variant)
+            print('save csv.pkl...')
             df.to_pickle(csv_path + '.pkl')
         else:
+            print('read csv.pkl...')
             df = pd.read_pickle(csv_path + '.pkl')
         return df
 
