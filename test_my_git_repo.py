@@ -2,6 +2,7 @@ from itertools import product
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 from DIPLOMv1.dataset import fetch_ml_ratings
 from DIPLOMv1 import SVD
+from tabulate import tabulate
 
 from sklearn.metrics import mean_absolute_error
 
@@ -148,7 +149,7 @@ def funk_svd_predict(userID, data_with_user, movies_df):
     return recommendations, rated_df
 
 def printTable(table):
-    display('\n'.join(table))
+    print(tabulate(table, headers='firstrow'))
 
 m = list(movies_df[movies_df["genres"] == "Horror"].i_id)
 o = df[df["i_id"] == 62203].sort_values(by='rating', ascending=False)
